@@ -1,1 +1,7 @@
-* @uips-browser-kit/docs @uips-browser-kit/maintainers
+*             @uips-browser-kit/docs @uips-browser-kit/maintainers
+/vision/      @uips-browser-kit/owners @uips-browser-kit/maintainers
+/decisions/   @uips-browser-kit/maintainers
+/guides/      @uips-browser-kit/docs @uips-browser-kit/maintainers
+/reference/   @uips-browser-kit/maintainers
+/releases/    @uips-browser-kit/maintainers
+/_publish/    @uips-browser-kit/maintainers
