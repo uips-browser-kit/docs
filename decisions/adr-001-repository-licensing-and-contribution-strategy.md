@@ -1,83 +1,123 @@
-**ADR-001: Repository Licensing and Contribution Strategy**
+# ADR-001 — Repository Licensing and Contribution Strategy
 
-**Status**
+## Status
+
 Accepted
 
-**Context**
+## Date
 
-The `uips-browser-kit` organization is intended for open collaboration around UiPath Studio libraries and related assets. Contributors may include developers, testers, documentation authors, and other collaborators with varying GitHub experience.
+2026-05-27
 
-The project aims to encourage contribution while preserving future strategic flexibility. Some repositories represent strategic project assets, while others primarily exist for collaboration, experimentation, or documentation.
+## Context
 
-Future relicensing capability is a requirement.
+The `uips-browser-kit` organization is intended for open collaboration around
+UiPath Studio libraries and related assets. Contributors may include developers,
+testers, documentation authors, and other collaborators with varying GitHub
+experience.
 
-**Decision**
+The project aims to encourage contribution while preserving future strategic
+flexibility. Some repositories represent strategic project assets; others exist
+primarily for collaboration, experimentation, or documentation.
 
-Repository licensing is separated by artifact type:
+Forces at play:
 
-| Repository category                |                          License |
-| ---------------------------------- | -------------------------------: |
-| Code repositories                  |               Apache License 2.0 |
-| Documentation/content repositories | Creative Commons Attribution 4.0 |
+- future relicensing capability is a stated requirement
+- contribution friction must be kept low for RPA developers
+- strategic code assets need controlled ownership and merge paths
+- documentation and content follow different norms than code (CC rather than Apache)
+- strong copyleft (GPL, AGPL) would conflict with commercial UiPath environments
 
-Strategic repositories are defined as:
+## Decision
 
-```text
-library
-rules
-snippets
-```
+We separate repository licensing by artifact type and apply a contribution
+agreement requirement only to strategic repositories.
 
-For these repositories:
+Licensing by category:
 
-* contribution agreements are required for external contributions
-* maintainers control review and merge paths
-* branch protection and CODEOWNERS are enforced
-* future relicensing capability shall be preserved
+| Repository category | License |
+|---|---|
+| Code repositories | Apache License 2.0 |
+| Documentation and content repositories | Creative Commons Attribution 4.0 |
 
-Collaborative repositories:
+Strategic repositories — contribution agreement required, maintainer-controlled
+review and merge, branch protection and CODEOWNERS enforced, future relicensing
+capability preserved:
 
-```text
-testproject
-testharness-webapps
-playground
-```
+- `library`
+- `rules`
+- `snippets`
 
-Content repositories:
+Collaborative repositories — lower contribution friction, no CLA:
 
-```text
-docs
-testdata
-exploration
-```
+- `testproject`
+- `testharness-webapps`
+- `playground`
 
-These repositories prioritize collaboration and lower contribution friction.
+Content repositories — CC-BY-4.0, no CLA:
 
-**Objectives**
+- `docs`
+- `testdata`
+- `exploration`
 
-1. Enable open collaboration.
-2. Keep contribution friction low for RPA developers.
-3. Preserve future relicensing capability.
-4. Preserve future strategic and commercial flexibility.
-5. Concentrate ownership of strategic assets.
-6. Separate strategic assets from collaborative assets.
-7. Permit experimentation in non-core repositories.
-8. Use familiar and business-friendly licenses.
-9. Avoid strong copyleft obligations.
-10. Distinguish software artifacts from documentation/content artifacts.
+### Rationale
 
-**Consequences**
+Apache 2.0 satisfies the objectives of open collaboration, business-friendly
+use, and future relicensing: it is permissive, patent-explicit, and does not
+impose copyleft obligations on consumers. CC-BY-4.0 is the standard for
+documentation and content assets where attribution matters but code licensing
+terms are inappropriate.
 
-Positive:
+Concentrating the CLA requirement on strategic repositories reduces
+administration overhead while preserving control over the assets most likely
+to be relicensed or commercialised. Collaborative and content repositories
+accept contributions without agreements because the risk profile is lower and
+the contribution base is broader.
 
-* Contributors can participate with low friction.
-* Strategic repositories remain controlled.
-* Future licensing changes remain possible.
-* Repository purpose aligns with governance and permissions.
-* Code and content follow separate licensing models.
+## Consequences
 
-Negative:
+### Positive
 
-* Strategic repositories require additional contribution process overhead.
-* Repository classification must be maintained consistently.
-* Contribution agreements introduce additional administration for selected repositories.
+- contributors can participate with low friction across most repositories
+- strategic repositories remain under controlled ownership
+- future licensing changes remain possible for the assets that matter most
+- repository purpose aligns with governance model and team permissions
+- code and content follow separate, well-understood licensing models
+
+### Negative
+
+- strategic repositories require additional contribution process overhead (CLA bot, signatures branch)
+- repository classification must be maintained consistently as new repos are added
+- contributors to strategic repos face an extra step that may deter casual fixes
+
+### Neutral
+
+- new repositories must be classified at creation time and assigned to the appropriate tier
+- the `skills` repository was added after this ADR was accepted and classified as strategic (Apache 2.0, CLA required)
+
+## Alternatives Considered
+
+### MIT for all code repositories
+
+Simpler and more widely recognised. Rejected because MIT lacks an explicit
+patent grant, which matters for a toolkit shipping into enterprise UiPath
+environments. Apache 2.0 provides equivalent permissiveness with the patent
+clause included.
+
+### No contribution agreement on any repository
+
+Maximum contribution friction reduction. Rejected because it removes the
+ability to relicense strategic assets without contacting every contributor —
+a stated requirement from the outset.
+
+### GPL for code repositories
+
+Ensures all derivatives remain open. Rejected because GPL is incompatible
+with many enterprise and commercial UiPath deployment contexts, which would
+block adoption by the target audience.
+
+## References
+
+- [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+- [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/)
+- [contributor-assistant/github-action](https://github.com/contributor-assistant/github-action) — CLA bot used for signature collection
+- [CONTRIBUTING.md](https://github.com/uips-browser-kit/.github/blob/main/CONTRIBUTING.md)

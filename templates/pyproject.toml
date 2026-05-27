@@ -1,0 +1,65 @@
+# Template: pyproject.toml
+#
+# Shared-venv convention:
+#   All repos are cloned into a common parent folder that owns the shared .venv.
+#   Set UV_PROJECT_ENVIRONMENT=<parent>/.venv (e.g. via direnv .envrc) so that
+#   uv resolves against the shared environment in every repo.
+#
+#   Add dependencies:    uv add <package>
+#   Do NOT run:          uv sync   (creates an isolated per-project venv)
+#
+#   Expose common tasks via a justfile; see docs/templates/justfile.
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# hatchling is the build backend. It is simpler than setuptools for most
+# projects and does not require a setup.py or setup.cfg. Use setuptools only
+# when an upstream scaffold (e.g. salt-extension) mandates it.
+
+[project]
+name = "CHANGEME"
+dynamic = ["version"]       # version read from src/CHANGEME/__init__.py
+description = "CHANGEME"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+# Dynamic versioning from a dunder file — use this when the project is a
+# package (i.e. it has a src/CHANGEME/__init__.py that consumers import).
+# The single source of truth is __version__ in the package init; pyproject
+# and the installed metadata stay in sync automatically.
+#
+# For a tool or script with no importable package, replace the two lines above
+# with a static version:
+#   version = "0.1.0"
+# and remove the [tool.hatch.version] section below.
+#
+# setuptools_scm is only needed when an upstream scaffold mandates it (e.g. saltext-*).
+
+[tool.hatch.version]
+path = "src/CHANGEME/__init__.py"
+
+# src/CHANGEME/__init__.py must contain exactly:
+#   __version__ = "0.1.0"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.9",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+# 100 is the pragmatic middle ground: 88 is black-legacy, 120 is too wide.
+# ruff handles both linting (ruff check) and formatting (ruff format),
+# replacing the black + isort combination.
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP"]
+ignore = ["E501"]           # line length enforced by formatter, not linter
+
+[tool.ruff.format]
+quote-style = "double"
