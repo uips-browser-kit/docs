@@ -14,3 +14,4 @@ Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 | `releases/` | Release notes and changelogs | maintainers |
 | `_publish/` | Pipeline output — generated, do not hand-edit | maintainers |
 | `togaf/` | TOGAF architecture inventories (biz/app/dat/tec) | maintainers |
+| `glossary/` | Terminology and concept definitions | docs, maintainers |
