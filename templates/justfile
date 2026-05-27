@@ -3,12 +3,10 @@
 # Shell: PowerShell Core (pwsh). Requires pwsh to be on PATH.
 #
 # Shared-venv convention:
-#   UV_PROJECT_ENVIRONMENT must point to the shared .venv in the common parent
-#   folder. Set it via direnv (.envrc at the workspace root) or export it
-#   manually before running just.
-#
-#   The install recipe adds this package to the shared venv in editable mode.
-#   It does not create a new venv. Run it once after cloning.
+#   Set UIPS_BROWSER_KIT_ROOT to the workspace root (e.g. D:\work\uips-browser-kit).
+#   onboarding/shared.ps1 derives UV_PROJECT_ENVIRONMENT from it automatically.
+#   All just recipes rely on UV_PROJECT_ENVIRONMENT being present; no path is
+#   hardcoded. Run `just install` once after cloning.
 
 set shell := ["pwsh", "-NoProfile", "-Command"]
 

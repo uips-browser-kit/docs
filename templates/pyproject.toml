@@ -1,9 +1,9 @@
 # Template: pyproject.toml
 #
 # Shared-venv convention:
-#   All repos are cloned into a common parent folder that owns the shared .venv.
-#   Set UV_PROJECT_ENVIRONMENT=<parent>/.venv (e.g. via direnv .envrc) so that
-#   uv resolves against the shared environment in every repo.
+#   Set UIPS_BROWSER_KIT_ROOT to the workspace root before running any just recipe.
+#   onboarding/shared.ps1 derives UV_PROJECT_ENVIRONMENT from it automatically,
+#   so uv resolves against the shared .venv in every repo.
 #
 #   Add dependencies:    uv add <package>
 #   Do NOT run:          uv sync   (creates an isolated per-project venv)
