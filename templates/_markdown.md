@@ -88,6 +88,12 @@ Link text should describe the destination, not repeat the URL.
 Correct: `[contributing guide](CONTRIBUTING.md)`
 Incorrect: `[click here](CONTRIBUTING.md)` or `https://github.com/...`
 
+
+## Mermaid diagrams
+
+Prefer directional relations in C4 Mermaid diagrams to reduce edge overlap.
+Use `Rel_D`, `Rel_U`, `Rel_L`, and `Rel_R` instead of only `Rel` when diagrams become dense.
+Keep relation labels short and avoid unnecessary cross-links.
 ## Tables
 
 Use tables only for genuinely tabular data with two or more columns where
@@ -144,3 +150,4 @@ unless they serve as permanent authoring instructions.
 ```markdown
 <!-- TODO: fill in success metrics once baseline is established -->
 ```
+

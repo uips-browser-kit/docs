@@ -27,6 +27,10 @@ add dep:
 add-dev dep:
     uv add --dev {{ dep }}
 
+# Show the Python executable used by uv (confirms which venv is active)
+venv:
+    uv run python -c "import sys; print(sys.executable)"
+
 # Run linter
 lint:
     uv run ruff check .
